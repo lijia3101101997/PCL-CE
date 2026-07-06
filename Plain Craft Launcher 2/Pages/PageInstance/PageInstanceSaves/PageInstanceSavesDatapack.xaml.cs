@@ -30,8 +30,16 @@ public partial class PageInstanceSavesDatapack : IRefreshable
 
         try
         {
-            var fileInfo = new FileInfo(path);
-            var newItem = (fileInfo.CreationTime, fileInfo.Length);
+            (DateTime CreationTime, long Length) newItem;
+            var dirInfo = new DirectoryInfo(path);
+            if (dirInfo.Exists)
+                newItem = (dirInfo.CreationTime,
+                    dirInfo.EnumerateFiles("*", System.IO.SearchOption.AllDirectories).Sum(f => f.Length));
+            else
+            {
+                var fileInfo = new FileInfo(path);
+                newItem = (fileInfo.CreationTime, fileInfo.Length);
+            }
             if (!datapackFileInfoCache.ContainsKey(path)) datapackFileInfoCache.Add(path, newItem);
             return newItem;
         }
@@ -1089,7 +1097,7 @@ public partial class PageInstanceSavesDatapack : IRefreshable
             // 重命名
             try
             {
-                if (File.Exists(newPath))
+                if (File.Exists(newPath) || Directory.Exists(newPath))
                 {
                     ModMain.MyMsgBox(Lang.Text("Instance.Saves.Datapack.Replace.FileNameConflict", ModBase.GetFileNameFromPath(newPath)));
                     continue;
@@ -1414,14 +1422,22 @@ public partial class PageInstanceSavesDatapack : IRefreshable
                     return new[] { target.path, target.path + ".disabled" };
 
                 return new[] { target.path, target.RawPath };
-            }).Distinct().Where(m => File.Exists(m)).Select(m => new ModLocalComp.LocalCompFile(m)).ToList();
+            }).Distinct().Where(m => File.Exists(m) || Directory.Exists(m)).Select(m => new ModLocalComp.LocalCompFile(m)).ToList();
 
             // 实际删除文件
             foreach (var DatapackEntity in datapackList)
             {
                 try
                 {
-                    if (isShiftPressed)
+                    if (DatapackEntity.IsDirectoryComp)
+                    {
+                        if (isShiftPressed)
+                            Directory.Delete(DatapackEntity.path, true);
+                        else
+                            Microsoft.VisualBasic.FileIO.FileSystem.DeleteDirectory(DatapackEntity.path,
+                                UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
+                    }
+                    else if (isShiftPressed)
                         File.Delete(DatapackEntity.path);
                     else
                         Microsoft.VisualBasic.FileIO.FileSystem.DeleteFile(DatapackEntity.path,
