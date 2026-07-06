@@ -284,6 +284,104 @@ public class ModDependencyResolverTest
         Assert.AreEqual(0, result.Unresolved.Count);
     }
 
+    [TestMethod]
+    public void SkipsCrossSourceInstalledDependencyBySlug()
+    {
+        var resolver = new ModDependencyResolver();
+        var projects = CreateProjectStore(
+            new ModDependencyProject
+            {
+                ProjectId = "B",
+                Source = "Modrinth",
+                ProjectName = "Fabric API",
+                Slug = "fabric-api",
+                Files = [CreateFile("b-file")],
+            });
+
+        var result = resolver.Resolve(CreateRequest(
+            projects,
+            [
+                new InstalledModIdentity
+                {
+                    SourceProjectId = "123456",
+                    Source = "CurseForge",
+                    ModId = "fabricapi",
+                    Slug = "fabric-api",
+                    GameVersions = ["1.20.1"],
+                    Loaders = ["Fabric"],
+                },
+            ],
+            CreateDependency("B")));
+
+        Assert.AreEqual(0, result.ToInstall.Count);
+        Assert.AreEqual(1, result.Satisfied.Count);
+        StringAssert.Contains(result.Satisfied[0].Reason, "another source");
+    }
+
+    [TestMethod]
+    public void SkipsCrossSourceInstalledDependencyByModId()
+    {
+        var resolver = new ModDependencyResolver();
+        var projects = CreateProjectStore(
+            new ModDependencyProject
+            {
+                ProjectId = "B",
+                Source = "Modrinth",
+                ProjectName = "Fabric API",
+                Slug = "fabric-api",
+                Files = [CreateFile("b-file")],
+            });
+
+        var result = resolver.Resolve(CreateRequest(
+            projects,
+            [
+                new InstalledModIdentity
+                {
+                    SourceProjectId = null,
+                    Source = null,
+                    ModId = "fabric_api",
+                    GameVersions = ["1.20.1"],
+                    Loaders = ["Fabric"],
+                },
+            ],
+            CreateDependency("B")));
+
+        Assert.AreEqual(0, result.ToInstall.Count);
+        Assert.AreEqual(1, result.Satisfied.Count);
+        StringAssert.Contains(result.Satisfied[0].Reason, "another source");
+    }
+
+    [TestMethod]
+    public void DeduplicatesCrossSourceInstallsBySlug()
+    {
+        var resolver = new ModDependencyResolver();
+        var projects = CreateProjectStore(
+            new ModDependencyProject
+            {
+                ProjectId = "B",
+                Source = "Modrinth",
+                ProjectName = "Fabric API",
+                Slug = "fabric-api",
+                Files = [CreateFile("b-file")],
+            },
+            new ModDependencyProject
+            {
+                ProjectId = "123456",
+                Source = "CurseForge",
+                ProjectName = "Fabric API",
+                Slug = "fabric-api",
+                Files = [CreateFile("cf-file")],
+            });
+
+        var result = resolver.Resolve(CreateRequest(
+            projects,
+            CreateDependency("B"),
+            CreateDependency("123456", source: "CurseForge")));
+
+        Assert.AreEqual(1, result.ToInstall.Count);
+        Assert.AreEqual(0, result.Unresolved.Count);
+    }
+
     private static ModDependencyRequest CreateRequest(
         Dictionary<string, ModDependencyProject> projects,
         params ModDependencyReference[] requiredDependencies)

@@ -82,6 +82,7 @@ public static class ModCompDependency
                     SourceProjectId = localFile.Comp.Id,
                     Source = source,
                     ModId = localFile.ModId,
+                    Slug = localFile.Comp.Slug,
                     GameVersions = gameVersions,
                     Loaders = loaders,
                 });
@@ -139,6 +140,7 @@ public static class ModCompDependency
             ProjectId = compProject.Id,
             Source = source,
             ProjectName = compProject.TranslatedName ?? compProject.RawName,
+            Slug = compProject.Slug,
             Files = files.Select(compFile => new ModDependencyFile
             {
                 Id = compFile.Id,
