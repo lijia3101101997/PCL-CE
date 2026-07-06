@@ -1,0 +1,39 @@
+name: Build (Manual)
+
+permissions:
+  contents: read
+
+on:
+  push:
+    branches-ignore: [dev]
+    paths-ignore:
+      - '**/.editorconfig'
+      - '**/.gitignore'
+      - '**/.gitattributes'
+      - '**/*.md'
+      - '**/LICENSE'
+      - '**/LICENCE'
+      - 'PCL.Core.Test/**'
+      - '.github/ISSUE_TEMPLATE/**'
+      - '.github/FUNDING.yml'
+  workflow_dispatch:
+    inputs:
+      architecture:
+        description: 目标架构
+        type: choice
+        options: [x64, ARM64, all]
+        default: x64
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        architecture: [x64, ARM64]
+      fail-fast: false
+
+    if: ${{ github.event_name == 'push' || inputs.architecture == 'all' || inputs.architecture == matrix.architecture }}
+    uses: ./.github/workflows/reusable-build.yml
+    with:
+      configuration: CI
+      architecture: ${{ matrix.architecture }}
+    secrets: inherit
