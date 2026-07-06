@@ -118,6 +118,7 @@ public partial class PageToolsGameLink
     {
         ModAnimation.AniControlEnabled += 1;
         TextLinkUsername.Text = Config.Link.Username;
+        TextLinkRelayServer.Text = Config.Link.CustomRelayServer;
         ComboPreferProtocol.SelectedIndex = (int)Config.Link.ProtocolPreference;
         CheckLatencyFirstMode.Checked = Config.Link.UseLatencyFirstMode;
         CheckTryPunchSym.Checked = Config.Link.TryPunchSym;

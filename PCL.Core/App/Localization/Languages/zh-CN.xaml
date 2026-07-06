@@ -2579,6 +2579,9 @@
     <sys:String x:Key="Setup.GameLink.Protocol.Tcp.ToolTip">让 EasyTier 优先使用 TCP 进行通信，TCP 通常能带来更好的稳定性</sys:String>
     <sys:String x:Key="Setup.GameLink.Protocol.Udp">UDP</sys:String>
     <sys:String x:Key="Setup.GameLink.Protocol.Udp.ToolTip">让 EasyTier 优先使用 UDP 进行通信，UDP 通常能带来更低的通信时延</sys:String>
+    <sys:String x:Key="Setup.GameLink.RelayServer">自定义节点</sys:String>
+    <sys:String x:Key="Setup.GameLink.RelayServer.Hint">一般应以 tcp:// 或 udp:// 开头；若有多个，请使用英文分号分割</sys:String>
+    <sys:String x:Key="Setup.GameLink.RelayServer.ToolTip">自定义 EasyTier 中继节点地址，一般应以 tcp:// 或 udp:// 开头；若有多个，请使用英文分号分割。</sys:String>
     <sys:String x:Key="Setup.GameLink.RestartRequired">修改此处的设置后，需要重新启动大厅以使设置生效。</sys:String>
     <sys:String x:Key="Setup.GameLink.Username">用户名</sys:String>
     <sys:String x:Key="Setup.GameLink.Username.ToolTip">PCL CE 会使用此处的用户名用于大厅信息展示。</sys:String>

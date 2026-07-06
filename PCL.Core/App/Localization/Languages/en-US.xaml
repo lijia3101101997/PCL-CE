@@ -2579,6 +2579,9 @@
     <sys:String x:Key="Setup.GameLink.Protocol.Tcp.ToolTip">Let EasyTier prefer TCP communication, which usually provides better stability.</sys:String>
     <sys:String x:Key="Setup.GameLink.Protocol.Udp">UDP</sys:String>
     <sys:String x:Key="Setup.GameLink.Protocol.Udp.ToolTip">Let EasyTier prefer UDP communication, which usually provides lower latency.</sys:String>
+    <sys:String x:Key="Setup.GameLink.RelayServer">Custom nodes</sys:String>
+    <sys:String x:Key="Setup.GameLink.RelayServer.Hint">Usually starts with tcp:// or udp://; separate multiple entries with semicolons</sys:String>
+    <sys:String x:Key="Setup.GameLink.RelayServer.ToolTip">Custom EasyTier relay node addresses, usually starting with tcp:// or udp://; separate multiple entries with semicolons.</sys:String>
     <sys:String x:Key="Setup.GameLink.RestartRequired">A lobby restart is required for changes on this page to take effect.</sys:String>
     <sys:String x:Key="Setup.GameLink.Username">Username</sys:String>
     <sys:String x:Key="Setup.GameLink.Username.ToolTip">PCL CE will use this username for lobby display.</sys:String>
