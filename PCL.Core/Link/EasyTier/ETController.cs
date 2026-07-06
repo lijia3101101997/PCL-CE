@@ -10,7 +10,6 @@ using PCL.Core.Utils;
 using PCL.Core.Utils.Secret;
 using static PCL.Core.Link.EasyTier.ETInfoProvider;
 using static PCL.Core.Link.Lobby.LobbyInfoProvider;
-using static PCL.Core.Link.Natayark.NatayarkProfileManager;
 
 namespace PCL.Core.Link.EasyTier;
 // ReSharper disable InconsistentNaming
@@ -168,10 +167,6 @@ public static class ETController
             if (AllowCustomName && !string.IsNullOrWhiteSpace(Config.Link.Username))
             {
                 showName = Config.Link.Username;
-            }
-            else if (!string.IsNullOrWhiteSpace(NaidProfile.Username))
-            {
-                showName = NaidProfile.Username;
             }
 
             arguments.Add("hostname",

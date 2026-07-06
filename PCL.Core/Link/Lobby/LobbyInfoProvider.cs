@@ -2,7 +2,6 @@ using System;
 using System.Numerics;
 using PCL.Core.App;
 using PCL.Core.IO.Net;
-using PCL.Core.Link.Natayark;
 using PCL.Core.Logging;
 using PCL.Core.Utils;
 using PCL.Core.Utils.Exts;
@@ -125,7 +124,5 @@ public static class LobbyInfoProvider
     /// <summary>
     /// 获取用于联机显示的用户名
     /// </summary>
-    public static string? GetUsername() => AllowCustomName
-        ? Config.Link.Username.ReplaceNullOrEmpty(NatayarkProfileManager.NaidProfile.Username)
-        : NatayarkProfileManager.NaidProfile.Username;
+    public static string? GetUsername() => Config.Link.Username;
 }

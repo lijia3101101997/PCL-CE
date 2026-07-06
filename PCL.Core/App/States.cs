@@ -308,16 +308,6 @@ public static partial class States
         [ConfigItem<int>("LinkAnnounceCacheVer", 0)] public partial int AnnounceCacheVer { get; set; }
 
         /// <summary>
-        /// Natayark ID 刷新令牌。
-        /// </summary>
-        [ConfigItem<string>("LinkNaidRefreshToken", "", ConfigSource.SharedEncrypt)] public partial string NaidRefreshToken { get; set; }
-
-        /// <summary>
-        /// Natayark ID 令牌过期时间。
-        /// </summary>
-        [ConfigItem<string>("LinkNaidRefreshExpiresAt", "", ConfigSource.SharedEncrypt)] public partial string NaidRefreshExpireTime { get; set; }
-
-        /// <summary>
         /// 首次网络测试状态。
         /// </summary>
         [ConfigItem<bool>("LinkFirstTimeNetTest", true, ConfigSource.SharedEncrypt)] public partial bool DoFirstTimeNetTest { get; set; }

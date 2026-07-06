@@ -18,7 +18,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using PCL.Core.IO.Net;
 using static PCL.Core.Link.Lobby.LobbyInfoProvider;
-using static PCL.Core.Link.Natayark.NatayarkProfileManager;
 using LobbyType = PCL.Core.Link.Scaffolding.Client.Models.LobbyType;
 using PCL.Core.Link.McPing;
 using PCL.Core.IO.Net.Http;
@@ -221,9 +220,6 @@ public sealed class LobbyController
         {
             ["Tag"] = "Link",
             ["Id"] = Identify.LauncherId,
-            ["NaidId"] = NaidProfile.Id,
-            ["NaidEmail"] = NaidProfile.Email,
-            ["NaidLastIp"] = NaidProfile.LastIp,
             ["CustomName"] = Config.Link.Username,
             ["Servers"] = servers,
             ["IsHost"] = isHost
