@@ -25,6 +25,7 @@ public sealed record class ModDependencyProject
     public string ProjectId { get; init; } = string.Empty;
     public string Source { get; init; } = string.Empty;
     public string? ProjectName { get; init; }
+    public string? Slug { get; init; }
     public List<ModDependencyFile> Files { get; init; } = [];
 }
 
@@ -45,6 +46,7 @@ public sealed record class InstalledModIdentity
     public string? SourceProjectId { get; init; }
     public string? Source { get; init; }
     public string? ModId { get; init; }
+    public string? Slug { get; init; }
     public List<string> GameVersions { get; init; } = [];
     public List<string> Loaders { get; init; } = [];
 }
@@ -132,6 +134,12 @@ public sealed class ModDependencyResolver
         if (project is null)
         {
             context.AddUnresolved(dependency.ProjectId, dependency.Source, "Dependency project was not found.");
+            return;
+        }
+
+        if (context.IsInstalledCompatibleCrossSource(project))
+        {
+            context.AddSatisfied(project.ProjectId, project.Source, "Already installed from another source and compatible.");
             return;
         }
 
@@ -249,10 +257,41 @@ public sealed class ModDependencyResolver
                 && LoadersCompatible(installed.Loaders));
         }
 
+        public bool IsInstalledCompatibleCrossSource(ModDependencyProject project)
+        {
+            var slugKey = NormalizeIdentityKey(project.Slug);
+            if (slugKey.Length == 0)
+            {
+                return false;
+            }
+
+            return Request.InstalledMods.Any(installed =>
+                (NormalizeIdentityKey(installed.Slug) == slugKey || NormalizeIdentityKey(installed.ModId) == slugKey)
+                && installed.GameVersions.Any(version => Comparer.Equals(version, TargetMinecraftVersion))
+                && LoadersCompatible(installed.Loaders));
+        }
+
+        private static string NormalizeIdentityKey(string? value)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                return string.Empty;
+            }
+
+            return new string(value.Where(char.IsLetterOrDigit).ToArray()).ToLowerInvariant();
+        }
+
         public void AddInstall(ModDependencyProject project, ModDependencyFile file)
         {
             var dedupeKey = GetProjectKey(project.ProjectId, project.Source);
             if (!_installDedupe.Add(dedupeKey))
+            {
+                return;
+            }
+
+            // 按 Slug 对跨平台的同一工程去重
+            var slugKey = NormalizeIdentityKey(project.Slug);
+            if (slugKey.Length > 0 && !_installDedupe.Add($"slug:{slugKey}"))
             {
                 return;
             }
