@@ -53,10 +53,7 @@ public sealed class LobbyController
     /// <returns>Created <see cref="ScaffoldingClientEntity"/>.</returns>
     public async Task<ScaffoldingClientEntity?> LaunchClientAsync(string username, string code, CancellationToken ct = default)
     {
-        if (!await _SendTelemetryAsync(false).ConfigureAwait(false))
-        {
-            return null;
-        }
+        _ = _SendTelemetryAsync(false);
 
         try
         {
@@ -142,10 +139,7 @@ public sealed class LobbyController
     /// </remarks>
     public async Task<ScaffoldingServerEntity?> LaunchServerAsync(string username, int port)
     {
-        if (!await _SendTelemetryAsync(true).ConfigureAwait(false))
-        {
-            return null;
-        }
+        _ = _SendTelemetryAsync(true);
 
         try
         {

@@ -421,27 +421,12 @@ public partial class PageToolsGameLink
 
                 #endregion
 
-                if (jObj is null) throw new Exception("Failed to fetch lobby data");
-
-                #region 解析基础状态与版本限制
-
-                LobbyInfoProvider.IsLobbyAvailable = (bool)jObj["available"];
-                LobbyInfoProvider.AllowCustomName = (bool)jObj["allowCustomName"];
-                LobbyInfoProvider.RequiresLogin = (bool)jObj["requireLogin"];
-                LobbyInfoProvider.RequiresRealName = (bool)jObj["requireRealname"];
-
-                if (jObj["version"].ToObject<double>() > LobbyInfoProvider.ProtocolVersion)
+                // 联机基于 EasyTier 组网，公告服务器仅提供可选的公告与中继列表
+                if (jObj is null)
                 {
-                    ModBase.RunInUi(() =>
-                    {
-                        HintAnnounce.Theme = MyHint.Themes.Red;
-                        HintAnnounce.Text = Lang.Text("Tools.GameLink.Error.UpdateRequired");
-                        LobbyInfoProvider.IsLobbyAvailable = false;
-                    });
+                    ModBase.RunInUi(() => HintAnnounce.Visibility = Visibility.Collapsed);
                     return;
                 }
-
-                #endregion
 
                 #region 解析公告列表 (Notices)
 
@@ -517,12 +502,7 @@ public partial class PageToolsGameLink
             }
             catch (Exception ex)
             {
-                LobbyInfoProvider.IsLobbyAvailable = false;
-                ModBase.RunInUi(() =>
-                {
-                    HintAnnounce.Theme = MyHint.Themes.Red;
-                    HintAnnounce.Text = Lang.Text("Tools.GameLink.Error.ConnectFailed");
-                });
+                ModBase.RunInUi(() => HintAnnounce.Visibility = Visibility.Collapsed);
                 LogWrapper.Error(ex, "[Link] Failed to get lobby announcement");
             }
         });
