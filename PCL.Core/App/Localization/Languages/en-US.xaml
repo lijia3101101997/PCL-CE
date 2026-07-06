@@ -1743,10 +1743,6 @@
     <sys:String x:Key="Link.Connection.P2P">P2P</sys:String>
     <sys:String x:Key="Link.Connection.Relay">Relay</sys:String>
     <sys:String x:Key="Link.Connection.Unknown">Unknown</sys:String>
-    <sys:String x:Key="Link.Natayark.TokenFetchEmpty">Failed to get AccessToken and RefreshToken: response is empty</sys:String>
-    <sys:String x:Key="Link.Natayark.TokenParseFailed">Failed to get AccessToken and RefreshToken: unable to parse response</sys:String>
-    <sys:String x:Key="Link.Natayark.UserInfoFetchEmpty">Failed to get Natayark user information: response is empty</sys:String>
-    <sys:String x:Key="Link.Natayark.UserInfoParseFailed">Failed to get Natayark user information: unable to parse response</sys:String>
     <sys:String x:Key="Link.Quality.Good">Good</sys:String>
     <sys:String x:Key="Link.Quality.GoodDescription">The current network environment should not affect connection experience.&#xA;This environment is suitable as the lobby host.</sys:String>
     <sys:String x:Key="Link.Quality.Normal">Normal</sys:String>
@@ -1761,7 +1757,6 @@
     <sys:String x:Key="Link.Lobby.InitFailed">Lobby service initialization failed. Please check your network.</sys:String>
     <sys:String x:Key="Link.Lobby.InvalidCodeFormat">Invalid lobby code format. Please check and try again!</sys:String>
     <sys:String x:Key="Link.Lobby.JoinFailed">Failed to join lobby. It may not exist or may have been disbanded.</sys:String>
-    <sys:String x:Key="Link.Lobby.LoginRequired">Please log in to Natayark ID first!</sys:String>
     <sys:String x:Key="Link.Lobby.MotdDesc"> - {0}</sys:String>
     <sys:String x:Key="Link.Lobby.MotdFormat">PCL CE Lobby{0}</sys:String>
     <sys:String x:Key="Link.Lobby.UnsupportedType">Unsupported lobby type: {0}</sys:String>
@@ -1769,7 +1764,6 @@
 
     <!-- Link.Mod -->
 
-    <sys:String x:Key="Link.Mod.AccountBanned">Your Natayark Network account status is abnormal and may be banned!</sys:String>
     <sys:String x:Key="Link.Mod.DownloadComplete">Multiplayer components downloaded!</sys:String>
     <sys:String x:Key="Link.Mod.DownloadEasyTierFailed">Failed to download EasyTier dependencies. Please check your network.</sys:String>
     <sys:String x:Key="Link.Mod.DownloadingDeps">Downloading multiplayer dependencies. Please wait...</sys:String>
@@ -1777,10 +1771,6 @@
     <sys:String x:Key="Link.Mod.EasyTierNotReady">EasyTier has not finished downloading. Please wait and try again!</sys:String>
     <sys:String x:Key="Link.Mod.InvalidPlayerId">Minecraft player ID cannot contain separators (|)!</sys:String>
     <sys:String x:Key="Link.Mod.LobbyUnavailable">Lobby is currently unavailable. Please try again later.</sys:String>
-    <sys:String x:Key="Link.Mod.LoginFirst">Please go to multiplayer settings and log in to Natayark Network first!</sys:String>
-    <sys:String x:Key="Link.Mod.NaidFetchFailed">Failed to fetch Natayark ID information</sys:String>
-    <sys:String x:Key="Link.Mod.ReLoginRequired">Please log in to your Natayark Network account again and try again!</sys:String>
-    <sys:String x:Key="Link.Mod.RealNameRequired">Please complete real-name verification at the Natayark Account Center first!</sys:String>
     <sys:String x:Key="Link.Mod.Task.CleanCache">Clean caches and redundant components</sys:String>
     <sys:String x:Key="Link.Mod.Task.DownloadEasyTier">Download EasyTier</sys:String>
     <sys:String x:Key="Link.Mod.Task.ExtractFiles">Extract files</sys:String>
@@ -1788,7 +1778,7 @@
     <sys:String x:Key="Link.Mod.Task.InitLobby">Initialize lobby</sys:String>
     <sys:String x:Key="Link.Mod.Task.InitLobbyUi">Initialize lobby UI</sys:String>
     <sys:String x:Key="Link.Mod.Task.RefreshUi">Refresh UI</sys:String>
-    <sys:String x:Key="Link.Mod.UsernameOrLogin">Please set a username in Settings, or log in to Natayark Network first!</sys:String>
+    <sys:String x:Key="Link.Mod.UsernameOrLogin">Please set a username in Settings first!</sys:String>
 
     <!-- Link.Nat -->
 
@@ -2509,7 +2499,6 @@
     <sys:String x:Key="Setup.About.Legal.CommunityLobbyPrivacy">Community lobby privacy policy</sys:String>
     <sys:String x:Key="Setup.About.Legal.CommunitySource">PCL CE source code</sys:String>
     <sys:String x:Key="Setup.About.Legal.CopyrightText">Copyright © PCL Community &amp; LTCat (龙腾猫跃) 2026.&#xD;NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.</sys:String>
-    <sys:String x:Key="Setup.About.Legal.NatayarkTerms">Natayark OpenID ToS</sys:String>
     <sys:String x:Key="Setup.About.Legal.OtherInfo">Other information</sys:String>
     <sys:String x:Key="Setup.About.Legal.PrivacyNotice">Privacy statement</sys:String>
     <sys:String x:Key="Setup.About.Legal.PrivacyText">The User Agent of this software includes the launcher version number to count the number of users on each version.&#xD;Other than this, this software will not upload any other information to the developers.&#xD;* Online and hardware/software survey features follow their own privacy policies, which are separate from this notice.</sys:String>
@@ -2592,7 +2581,7 @@
     <sys:String x:Key="Setup.GameLink.Protocol.Udp.ToolTip">Let EasyTier prefer UDP communication, which usually provides lower latency.</sys:String>
     <sys:String x:Key="Setup.GameLink.RestartRequired">A lobby restart is required for changes on this page to take effect.</sys:String>
     <sys:String x:Key="Setup.GameLink.Username">Username</sys:String>
-    <sys:String x:Key="Setup.GameLink.Username.ToolTip">PCL CE will try to use this username for lobby display.&#xA;If left blank, the Natayark ID username will be used.&#xA;&#xA;In some cases, the Natayark ID username may still be displayed instead of the name set here.</sys:String>
+    <sys:String x:Key="Setup.GameLink.Username.ToolTip">PCL CE will use this username for lobby display.</sys:String>
 
     <!-- Setup.GameLink.NetworkTest -->
 
@@ -3286,11 +3275,6 @@
     <sys:String x:Key="Tools.GameLink.Join.Paste">Paste</sys:String>
     <sys:String x:Key="Tools.GameLink.Join.Title">Join lobby</sys:String>
     <sys:String x:Key="Tools.GameLink.Link.Disable">Disable lobby</sys:String>
-    <sys:String x:Key="Tools.GameLink.Link.EasyTier">EasyTier official website</sys:String>
-    <sys:String x:Key="Tools.GameLink.Link.Friends">Links: </sys:String>
-    <sys:String x:Key="Tools.GameLink.Link.Privacy">Lobby Privacy Policy</sys:String>
-    <sys:String x:Key="Tools.GameLink.Link.Report">Report violation</sys:String>
-    <sys:String x:Key="Tools.GameLink.Link.Terms">Natayark OpenID ToS</sys:String>
     <sys:String x:Key="Tools.GameLink.Loading.ConnectingServer">Connecting to lobby server...</sys:String>
     <sys:String x:Key="Tools.GameLink.Loading.Creating">Creating lobby</sys:String>
     <sys:String x:Key="Tools.GameLink.Loading.DownloadingModule">Downloading lobby module</sys:String>
@@ -3309,12 +3293,8 @@
     <!-- Tools.GameLink.Agreement -->
 
     <sys:String x:Key="Tools.GameLink.Agreement.Accept">I have read and agree</sys:String>
-    <sys:String x:Key="Tools.GameLink.Agreement.Body">By using the lobby feature, you agree to the following terms:&#xA;&#xA;I agree to comply with applicable laws and regulations and will not use the lobby feature for illegal or prohibited purposes.&#xA;I agree to bear all risks associated with using the lobby feature.&#xA;I acknowledge and agree that PCL CE collects processed device identifiers, Natayark ID, and other information, and may provide them to law enforcement when necessary.&#xA;To protect minors' personal information, I confirm that I am at least 14 years old before using the lobby.&#xA;&#xA;Additionally, you must also agree to the PCL CE lobby privacy policy and the Natayark OpenID terms of service.</sys:String>
-    <sys:String x:Key="Tools.GameLink.Agreement.Description">Service documents and introductions used by PCL CE Lobby are listed below.</sys:String>
-    <sys:String x:Key="Tools.GameLink.Agreement.NatayarkTerms">Natayark OpenID ToS</sys:String>
-    <sys:String x:Key="Tools.GameLink.Agreement.NatayarkTermsInfo">View Natayark OpenID terms of service.</sys:String>
-    <sys:String x:Key="Tools.GameLink.Agreement.PrivacyPolicy">PCL CE Lobby Privacy Policy</sys:String>
-    <sys:String x:Key="Tools.GameLink.Agreement.PrivacyPolicyInfo">Learn how PCL CE handles your personal information.</sys:String>
+    <sys:String x:Key="Tools.GameLink.Agreement.Body">By using the lobby feature, you agree to the following terms:&#xA;&#xA;I agree to comply with applicable laws and regulations and will not use the lobby feature for illegal or prohibited purposes.&#xA;I agree to bear all risks associated with using the lobby feature.</sys:String>
+    <sys:String x:Key="Tools.GameLink.Agreement.Description">Usage notes for the PCL CE lobby are listed below.</sys:String>
     <sys:String x:Key="Tools.GameLink.Agreement.Title">PCL CE Lobby Terms &amp; Conditions</sys:String>
 
     <!-- Tools.GameLink.Finish -->
@@ -3338,28 +3318,6 @@
     <sys:String x:Key="Tools.GameLink.Finish.Unavailable">Unavailable</sys:String>
     <sys:String x:Key="Tools.GameLink.Finish.UserName">Username</sys:String>
     <sys:String x:Key="Tools.GameLink.Finish.UserType">User type</sys:String>
-
-    <!-- Tools.GameLink.Natayark -->
-
-    <sys:String x:Key="Tools.GameLink.Natayark.Abnormal">(Abnormal)</sys:String>
-    <sys:String x:Key="Tools.GameLink.Natayark.Account">Natayark account</sys:String>
-    <sys:String x:Key="Tools.GameLink.Natayark.AccountExpired">Natayark account information has expired. Please log in again in Settings!</sys:String>
-    <sys:String x:Key="Tools.GameLink.Natayark.BrowserContinue">Please continue in your browser...</sys:String>
-    <sys:String x:Key="Tools.GameLink.Natayark.Continue">Continue</sys:String>
-    <sys:String x:Key="Tools.GameLink.Natayark.FetchFailed">Failed to fetch information</sys:String>
-    <sys:String x:Key="Tools.GameLink.Natayark.InvalidAuthCode">NAID authorization code is invalid.</sys:String>
-    <sys:String x:Key="Tools.GameLink.Natayark.Loading">Loading...</sys:String>
-    <sys:String x:Key="Tools.GameLink.Natayark.Login">Log in to Natayark</sys:String>
-    <sys:String x:Key="Tools.GameLink.Natayark.LoginComplete">Login completed</sys:String>
-    <sys:String x:Key="Tools.GameLink.Natayark.LoginFailed">NAID login failed. Please log in again in Settings.</sys:String>
-    <sys:String x:Key="Tools.GameLink.Natayark.LoginPrompt">PCL CE will open a login page. Please complete the login in your browser, then return to the launcher to continue.</sys:String>
-    <sys:String x:Key="Tools.GameLink.Natayark.LoginTitle">Log in to Natayark Network</sys:String>
-    <sys:String x:Key="Tools.GameLink.Natayark.LogoutComplete">Logged out!</sys:String>
-    <sys:String x:Key="Tools.GameLink.Natayark.LogoutConfirm">Are you sure you want to log out?</sys:String>
-    <sys:String x:Key="Tools.GameLink.Natayark.LogoutTitle">Log out</sys:String>
-    <sys:String x:Key="Tools.GameLink.Natayark.ProfileLoadFailed">Failed to load Natayark user data. Please log in again in Settings.</sys:String>
-    <sys:String x:Key="Tools.GameLink.Natayark.TokenExpired">Natayark ID token has expired. Please log in again.</sys:String>
-    <sys:String x:Key="Tools.GameLink.Natayark.TokenInvalid">NAID access token is invalid. Try refreshing your login.</sys:String>
 
     <!-- Tools.ServerQuery -->
 

@@ -1743,10 +1743,6 @@
     <sys:String x:Key="Link.Connection.P2P">P2P</sys:String>
     <sys:String x:Key="Link.Connection.Relay">中继</sys:String>
     <sys:String x:Key="Link.Connection.Unknown">未知</sys:String>
-    <sys:String x:Key="Link.Natayark.TokenFetchEmpty">获取 AccessToken 与 RefreshToken 失败，返回内容为空</sys:String>
-    <sys:String x:Key="Link.Natayark.TokenParseFailed">获取 AccessToken 与 RefreshToken 失败，解析返回内容失败</sys:String>
-    <sys:String x:Key="Link.Natayark.UserInfoFetchEmpty">获取 Natayark 用户信息失败，返回内容为空</sys:String>
-    <sys:String x:Key="Link.Natayark.UserInfoParseFailed">获取 Natayark 用户信息失败，解析返回内容失败</sys:String>
     <sys:String x:Key="Link.Quality.Good">优秀</sys:String>
     <sys:String x:Key="Link.Quality.GoodDescription">当前网络环境不会影响联机体验&#xA;该网络环境适合作为大厅创建者</sys:String>
     <sys:String x:Key="Link.Quality.Normal">一般</sys:String>
@@ -1761,7 +1757,6 @@
     <sys:String x:Key="Link.Lobby.InitFailed">大厅服务初始化失败，请检查网络连接。</sys:String>
     <sys:String x:Key="Link.Lobby.InvalidCodeFormat">大厅编号格式不正确，请检查后再试！</sys:String>
     <sys:String x:Key="Link.Lobby.JoinFailed">加入大厅失败，可能是大厅不存在或已被解散</sys:String>
-    <sys:String x:Key="Link.Lobby.LoginRequired">请先登录 Natayark ID 再使用大厅！</sys:String>
     <sys:String x:Key="Link.Lobby.MotdDesc"> - {0}</sys:String>
     <sys:String x:Key="Link.Lobby.MotdFormat">PCL CE 大厅{0}</sys:String>
     <sys:String x:Key="Link.Lobby.UnsupportedType">不支持的大厅类型: {0}</sys:String>
@@ -1769,7 +1764,6 @@
 
     <!-- Link.Mod -->
 
-    <sys:String x:Key="Link.Mod.AccountBanned">你的 Natayark Network 账号状态异常，可能已被封禁！</sys:String>
     <sys:String x:Key="Link.Mod.DownloadComplete">联机组件下载完成！</sys:String>
     <sys:String x:Key="Link.Mod.DownloadEasyTierFailed">下载 EasyTier 依赖文件失败，请检查网络连接</sys:String>
     <sys:String x:Key="Link.Mod.DownloadingDeps">正在下载联机依赖组件，请稍后...</sys:String>
@@ -1777,10 +1771,6 @@
     <sys:String x:Key="Link.Mod.EasyTierNotReady">EasyTier 尚未下载完成，请等待其下载完成后再试！</sys:String>
     <sys:String x:Key="Link.Mod.InvalidPlayerId">MC 玩家 ID 不可包含分隔符 (|) ！</sys:String>
     <sys:String x:Key="Link.Mod.LobbyUnavailable">大厅功能暂不可用，请稍后再试</sys:String>
-    <sys:String x:Key="Link.Mod.LoginFirst">请先前往联机设置并登录至 Natayark Network 再进行联机！</sys:String>
-    <sys:String x:Key="Link.Mod.NaidFetchFailed">尝试获取 Natayark ID 信息失败</sys:String>
-    <sys:String x:Key="Link.Mod.ReLoginRequired">请重新登录 Natayark Network 账号再试！</sys:String>
-    <sys:String x:Key="Link.Mod.RealNameRequired">请先前往 Natayark 账户中心进行实名验证再尝试操作！</sys:String>
     <sys:String x:Key="Link.Mod.Task.CleanCache">清理缓存与冗余组件</sys:String>
     <sys:String x:Key="Link.Mod.Task.DownloadEasyTier">下载 EasyTier</sys:String>
     <sys:String x:Key="Link.Mod.Task.ExtractFiles">解压文件</sys:String>
@@ -1788,7 +1778,7 @@
     <sys:String x:Key="Link.Mod.Task.InitLobby">大厅初始化</sys:String>
     <sys:String x:Key="Link.Mod.Task.InitLobbyUi">大厅界面初始化</sys:String>
     <sys:String x:Key="Link.Mod.Task.RefreshUi">刷新界面</sys:String>
-    <sys:String x:Key="Link.Mod.UsernameOrLogin">请先前往设置输入一个用户名，或登录至 Natayark Network 再进行联机！</sys:String>
+    <sys:String x:Key="Link.Mod.UsernameOrLogin">请先前往设置输入一个用户名再进行联机！</sys:String>
 
     <!-- Link.Nat -->
 
@@ -2509,7 +2499,6 @@
     <sys:String x:Key="Setup.About.Legal.CommunityLobbyPrivacy">PCL CE 联机大厅隐私政策</sys:String>
     <sys:String x:Key="Setup.About.Legal.CommunitySource">PCL CE 开源代码</sys:String>
     <sys:String x:Key="Setup.About.Legal.CopyrightText">Copyright © 2026 PCL Community &amp; 龙腾猫跃.&#xD;非 MINECRAFT 官方产品。未经 MOJANG 或 MICROSOFT 批准，也不与 MOJANG 或 MICROSOFT 关联。</sys:String>
-    <sys:String x:Key="Setup.About.Legal.NatayarkTerms">Natayark OpenID 服务条款</sys:String>
     <sys:String x:Key="Setup.About.Legal.OtherInfo">其他信息</sys:String>
     <sys:String x:Key="Setup.About.Legal.PrivacyNotice">隐私说明</sys:String>
     <sys:String x:Key="Setup.About.Legal.PrivacyText">本软件的 User Agent 中包含启动器的版本号，以统计各版本的用户数量。&#xD;除此之外，本软件不会向开发者上传任何其他信息。&#xD;* 联机与软硬件调查相关功能遵循其自身的隐私政策，与上述说明不通用。</sys:String>
@@ -2592,7 +2581,7 @@
     <sys:String x:Key="Setup.GameLink.Protocol.Udp.ToolTip">让 EasyTier 优先使用 UDP 进行通信，UDP 通常能带来更低的通信时延</sys:String>
     <sys:String x:Key="Setup.GameLink.RestartRequired">修改此处的设置后，需要重新启动大厅以使设置生效。</sys:String>
     <sys:String x:Key="Setup.GameLink.Username">用户名</sys:String>
-    <sys:String x:Key="Setup.GameLink.Username.ToolTip">PCL CE 会尽可能使用此处的用户名用于大厅信息展示。&#xA;若留空，则使用 Natayark ID 的用户名。&#xA;&#xA;部分情况下可能始终展示 Natayark ID 用户名，而非此处设置的名称。</sys:String>
+    <sys:String x:Key="Setup.GameLink.Username.ToolTip">PCL CE 会使用此处的用户名用于大厅信息展示。</sys:String>
 
     <!-- Setup.GameLink.NetworkTest -->
 
@@ -3286,11 +3275,6 @@
     <sys:String x:Key="Tools.GameLink.Join.Paste">粘贴</sys:String>
     <sys:String x:Key="Tools.GameLink.Join.Title">加入大厅</sys:String>
     <sys:String x:Key="Tools.GameLink.Link.Disable">停用联机功能</sys:String>
-    <sys:String x:Key="Tools.GameLink.Link.EasyTier">EasyTier 工具官网</sys:String>
-    <sys:String x:Key="Tools.GameLink.Link.Friends">友情链接：</sys:String>
-    <sys:String x:Key="Tools.GameLink.Link.Privacy">大厅隐私协议</sys:String>
-    <sys:String x:Key="Tools.GameLink.Link.Report">违法违规举报</sys:String>
-    <sys:String x:Key="Tools.GameLink.Link.Terms">Natayark Network 用户协议与隐私政策</sys:String>
     <sys:String x:Key="Tools.GameLink.Loading.ConnectingServer">正在连接到大厅服务器...</sys:String>
     <sys:String x:Key="Tools.GameLink.Loading.Creating">正在创建大厅</sys:String>
     <sys:String x:Key="Tools.GameLink.Loading.DownloadingModule">下载联机模块中……</sys:String>
@@ -3309,12 +3293,8 @@
     <!-- Tools.GameLink.Agreement -->
 
     <sys:String x:Key="Tools.GameLink.Agreement.Accept">我已阅读并同意</sys:String>
-    <sys:String x:Key="Tools.GameLink.Agreement.Body">使用大厅功能即代表你同意下列条款：&#xA;&#xA;我承诺严格遵守中国大陆相关法律法规，不会将大厅功能用于违法违规用途。&#xA;我承诺使用大厅功能带来的一切风险自行承担。&#xA;我已知晓并同意 PCL CE 收集经处理的本机识别码、Natayark ID 与其他信息并在必要时提供给执法部门。&#xA;为保护未成年人个人信息，使用联机大厅前，我确认我已满十四周岁。&#xA;&#xA;另外，你还需要同意 PCL CE 大厅相关隐私政策及《Natayark OpenID 服务条款》。</sys:String>
-    <sys:String x:Key="Tools.GameLink.Agreement.Description">此处列出了 PCL CE 大厅使用的相关服务文档及介绍</sys:String>
-    <sys:String x:Key="Tools.GameLink.Agreement.NatayarkTerms">Natayark OpenID 服务条款</sys:String>
-    <sys:String x:Key="Tools.GameLink.Agreement.NatayarkTermsInfo">查看 Natayark OpenID 服务条款</sys:String>
-    <sys:String x:Key="Tools.GameLink.Agreement.PrivacyPolicy">PCL CE 大厅相关隐私政策</sys:String>
-    <sys:String x:Key="Tools.GameLink.Agreement.PrivacyPolicyInfo">了解 PCL CE 如何处理您的个人信息</sys:String>
+    <sys:String x:Key="Tools.GameLink.Agreement.Body">使用大厅功能即代表你同意下列条款：&#xA;&#xA;我承诺严格遵守所在地相关法律法规，不会将大厅功能用于违法违规用途。&#xA;我承诺使用大厅功能带来的一切风险自行承担。</sys:String>
+    <sys:String x:Key="Tools.GameLink.Agreement.Description">此处列出了 PCL CE 大厅的使用说明</sys:String>
     <sys:String x:Key="Tools.GameLink.Agreement.Title">PCL CE 联机大厅说明与条款</sys:String>
 
     <!-- Tools.GameLink.Finish -->
@@ -3338,28 +3318,6 @@
     <sys:String x:Key="Tools.GameLink.Finish.Unavailable">暂不可用</sys:String>
     <sys:String x:Key="Tools.GameLink.Finish.UserName">用户名</sys:String>
     <sys:String x:Key="Tools.GameLink.Finish.UserType">用户类型</sys:String>
-
-    <!-- Tools.GameLink.Natayark -->
-
-    <sys:String x:Key="Tools.GameLink.Natayark.Abnormal">（异常）</sys:String>
-    <sys:String x:Key="Tools.GameLink.Natayark.Account">Natayark 账户</sys:String>
-    <sys:String x:Key="Tools.GameLink.Natayark.AccountExpired">Natayark 账号信息已过期，请前往设置重新登录！</sys:String>
-    <sys:String x:Key="Tools.GameLink.Natayark.BrowserContinue">请在浏览器中继续...</sys:String>
-    <sys:String x:Key="Tools.GameLink.Natayark.Continue">继续</sys:String>
-    <sys:String x:Key="Tools.GameLink.Natayark.FetchFailed">获取信息失败</sys:String>
-    <sys:String x:Key="Tools.GameLink.Natayark.InvalidAuthCode">Naid 验证代码无效</sys:String>
-    <sys:String x:Key="Tools.GameLink.Natayark.Loading">正在加载...</sys:String>
-    <sys:String x:Key="Tools.GameLink.Natayark.Login">点击登录 Natayark 账户</sys:String>
-    <sys:String x:Key="Tools.GameLink.Natayark.LoginComplete">已完成登录操作</sys:String>
-    <sys:String x:Key="Tools.GameLink.Natayark.LoginFailed">Naid 登录失败，请尝试前往设置重新登录</sys:String>
-    <sys:String x:Key="Tools.GameLink.Natayark.LoginPrompt">PCL CE 将会打开一个登录页面，请在浏览器中完成登录操作，然后回到启动器继续操作。</sys:String>
-    <sys:String x:Key="Tools.GameLink.Natayark.LoginTitle">登录至 Natayark Network</sys:String>
-    <sys:String x:Key="Tools.GameLink.Natayark.LogoutComplete">已退出登录！</sys:String>
-    <sys:String x:Key="Tools.GameLink.Natayark.LogoutConfirm">你确定要退出登录吗？</sys:String>
-    <sys:String x:Key="Tools.GameLink.Natayark.LogoutTitle">退出登录</sys:String>
-    <sys:String x:Key="Tools.GameLink.Natayark.ProfileLoadFailed">获取 Natayark 用户数据失败，请尝试前往设置重新登录</sys:String>
-    <sys:String x:Key="Tools.GameLink.Natayark.TokenExpired">Natayark ID 令牌已过期，请重新登录</sys:String>
-    <sys:String x:Key="Tools.GameLink.Natayark.TokenInvalid">Naid Access Token 无效，尝试刷新登录</sys:String>
 
     <!-- Tools.ServerQuery -->
 
