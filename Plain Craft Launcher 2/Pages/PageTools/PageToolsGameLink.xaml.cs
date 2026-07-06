@@ -7,7 +7,6 @@ using PCL.Core.Link;
 using PCL.Core.Link.EasyTier;
 using PCL.Core.Link.Lobby;
 using PCL.Core.Link.McPing;
-using PCL.Core.Link.Natayark;
 using PCL.Core.Link.Scaffolding.Client.Models;
 using PCL.Core.Link.Scaffolding.EasyTier;
 using PCL.Core.Logging;
@@ -122,7 +121,6 @@ public partial class PageToolsGameLink
                 isWarn: true
             ) == 1)
         {
-            States.Link.NaidRefreshTokenConfig.Reset();
             States.Link.LinkEulaConfig.Reset();
             HintService.Hint(Lang.Text("Tools.GameLink.Eula.Disabled"));
             CurrentSubpage = Subpages.PanEula;
@@ -373,7 +371,8 @@ public partial class PageToolsGameLink
 
                 #region 多服务器轮询获取公告
 
-                while (serverNumber < Secrets.LinkServers.Length)
+                while (serverNumber < Secrets.LinkServers.Length &&
+                       !string.IsNullOrWhiteSpace(Secrets.LinkServers[serverNumber]))
                     try
                     {
                         // 获取缓存版本号
@@ -421,27 +420,12 @@ public partial class PageToolsGameLink
 
                 #endregion
 
-                if (jObj is null) throw new Exception("Failed to fetch lobby data");
-
-                #region 解析基础状态与版本限制
-
-                LobbyInfoProvider.IsLobbyAvailable = (bool)jObj["available"];
-                LobbyInfoProvider.AllowCustomName = (bool)jObj["allowCustomName"];
-                LobbyInfoProvider.RequiresLogin = (bool)jObj["requireLogin"];
-                LobbyInfoProvider.RequiresRealName = (bool)jObj["requireRealname"];
-
-                if (jObj["version"].ToObject<double>() > LobbyInfoProvider.ProtocolVersion)
+                // 联机基于 EasyTier 组网，公告服务器仅提供可选的公告与中继列表
+                if (jObj is null)
                 {
-                    ModBase.RunInUi(() =>
-                    {
-                        HintAnnounce.Theme = MyHint.Themes.Red;
-                        HintAnnounce.Text = Lang.Text("Tools.GameLink.Error.UpdateRequired");
-                        LobbyInfoProvider.IsLobbyAvailable = false;
-                    });
+                    ModBase.RunInUi(() => HintAnnounce.Visibility = Visibility.Collapsed);
                     return;
                 }
-
-                #endregion
 
                 #region 解析公告列表 (Notices)
 
@@ -485,44 +469,10 @@ public partial class PageToolsGameLink
                     });
 
                 #endregion
-
-                #region 处理账户登录状态显示
-
-                if (string.IsNullOrWhiteSpace(States.Link.NaidRefreshToken))
-                {
-                    ModBase.RunInUi(() => LabNatayarkUserName.Text = Lang.Text("Tools.GameLink.Natayark.Login"));
-                }
-                else
-                {
-                    ModBase.RunInUi(() => LabNatayarkUserName.Text = Lang.Text("Tools.GameLink.Natayark.Loading"));
-                    if (string.IsNullOrEmpty(NatayarkProfileManager.NaidProfile.Username))
-                        ReloadNaidData();
-                    else
-                        ModBase.RunInUi(() =>
-                        {
-                            if (NatayarkProfileManager.NaidProfile.Status == 0)
-                            {
-                                LabNatayarkUserName.Text = NatayarkProfileManager.NaidProfile.Username;
-                                LabNatayarkUserName.Opacity = 1;
-                            }
-                            else
-                            {
-                                LabNatayarkUserName.Text = $"{NatayarkProfileManager.NaidProfile.Username} {Lang.Text("Tools.GameLink.Natayark.Abnormal")}";
-                                LabNatayarkUserName.Opacity = 0.6;
-                            }
-                        });
-                }
-
-                #endregion
             }
             catch (Exception ex)
             {
-                LobbyInfoProvider.IsLobbyAvailable = false;
-                ModBase.RunInUi(() =>
-                {
-                    HintAnnounce.Theme = MyHint.Themes.Red;
-                    HintAnnounce.Text = Lang.Text("Tools.GameLink.Error.ConnectFailed");
-                });
+                ModBase.RunInUi(() => HintAnnounce.Visibility = Visibility.Collapsed);
                 LogWrapper.Error(ex, "[Link] Failed to get lobby announcement");
             }
         });
@@ -556,119 +506,6 @@ public partial class PageToolsGameLink
     {
         var info = (PlayerProfile)((MyListItem)sender).Tag;
         ModMain.MyMsgBox(Lang.Text("Tools.GameLink.Player.InfoMessage", info.Name, info.Vendor), Lang.Text("Tools.GameLink.Player.InfoTitle", info.Name));
-    }
-
-    #endregion
-
-    #region Natayark 账户相关功能
-
-    private void ReloadNaidData()
-    {
-        ModBase.RunInNewThread(() =>
-        {
-            try
-            {
-                #region 1. 登录令牌有效期检查
-
-                // 检查 Token 是否过期
-                var expireTime = Convert.ToDateTime(States.Link.NaidRefreshExpireTime);
-                if (expireTime.CompareTo(DateTime.Now) < 0)
-                {
-                    States.Link.NaidRefreshToken = "";
-                    HintService.Hint(Lang.Text("Tools.GameLink.Natayark.TokenExpired"), HintType.Error);
-                    return;
-                }
-
-                #endregion
-
-                #region 2. 异步获取数据并同步等待
-
-                // 调用异步方法并阻塞获取结果
-                NatayarkProfileManager.GetNaidDataAsync(States.Link.NaidRefreshToken, true).GetAwaiter().GetResult();
-
-                // 等待用户名加载，设置 10 秒超时防止线程卡死
-                var retryCount = 0;
-                while (string.IsNullOrWhiteSpace(NatayarkProfileManager.NaidProfile.Username) && retryCount < 10)
-                {
-                    Thread.Sleep(1000);
-                    retryCount++;
-                }
-
-                if (string.IsNullOrWhiteSpace(NatayarkProfileManager.NaidProfile.Username))
-                    throw new Exception("Timeout waiting for username");
-
-                #endregion
-
-                #region 3. UI 状态更新
-
-                ModBase.RunInUi(() =>
-                {
-                    var profile = NatayarkProfileManager.NaidProfile;
-
-                    // 状态 0 为正常
-                    if (profile.Status == 0)
-                    {
-                        LabNatayarkUserName.Text = profile.Username;
-                        LabNatayarkUserName.Opacity = 1.0;
-                    }
-                    else
-                    {
-                        LabNatayarkUserName.Text = $"{profile.Username} {Lang.Text("Tools.GameLink.Natayark.Abnormal")}";
-                        LabNatayarkUserName.Opacity = 0.6;
-                    }
-                });
-
-                #endregion
-            }
-            catch (Exception ex)
-            {
-                #region 错误处理
-
-                ModBase.Log(ex, "Failed to refresh Natayark ID info, re-login required");
-
-                ModBase.RunInUi(() =>
-                {
-                    LabNatayarkUserName.Text = Lang.Text("Tools.GameLink.Natayark.FetchFailed");
-                    LabNatayarkUserName.Opacity = 0.6;
-                });
-
-                #endregion
-            }
-        }, "Natayark Profile Refresh");
-    }
-
-    private void LabNatayarkUserName_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-    {
-        // If Not IsLobbyAvailable Then
-        // Hint("大厅功能暂不可用，请稍后再试", HintType.Critical)
-        // Exit Sub
-        // End If
-
-        if (string.IsNullOrWhiteSpace(States.Link.NaidRefreshToken))
-        {
-            // 当前未登录，显示登录选项
-            if (ModMain.MyMsgBox(Lang.Text("Tools.GameLink.Natayark.LoginPrompt"), Lang.Text("Tools.GameLink.Natayark.LoginTitle"), Lang.Text("Tools.GameLink.Natayark.Continue"), Lang.Text("Common.Action.Cancel")) == 1)
-            {
-                LabNatayarkUserName.Text = Lang.Text("Tools.GameLink.Natayark.BrowserContinue");
-                LabNatayarkUserName.Opacity = 0.6d;
-                BtnNatayarkUserName.IsEnabled = false;
-                ModWebServer.StartNaidAuthorize(() =>
-                {
-                    ModBase.RunInUi(() => BtnNatayarkUserName.IsEnabled = true);
-                    HintService.Hint(Lang.Text("Tools.GameLink.Natayark.LoginComplete"), HintType.Success);
-                    ReloadNaidData();
-                });
-            }
-        }
-        // 当前已登录，显示登出选项
-        else if (ModMain.MyMsgBox(Lang.Text("Tools.GameLink.Natayark.LogoutConfirm"), Lang.Text("Tools.GameLink.Natayark.LogoutTitle"), Lang.Text("Common.Action.Confirm"), Lang.Text("Common.Action.Cancel")) == 1)
-        {
-            States.Link.NaidRefreshTokenConfig.Reset();
-            States.Link.NaidRefreshToken = "";
-            LabNatayarkUserName.Text = Lang.Text("Tools.GameLink.Natayark.Login");
-            ModBase.Log("[Link] 已退出登录 Natayark Network");
-            HintService.Hint(Lang.Text("Tools.GameLink.Natayark.LogoutComplete"), HintType.Success, false);
-        }
     }
 
     #endregion
