@@ -23,6 +23,11 @@ on:
         type: choice
         options: [x64, ARM64, all]
         default: x64
+      configuration:
+        description: 构建配置
+        type: choice
+        options: [CI, Beta, Release]
+        default: CI
 
 jobs:
   build:
@@ -34,6 +39,6 @@ jobs:
     if: ${{ github.event_name == 'push' || inputs.architecture == 'all' || inputs.architecture == matrix.architecture }}
     uses: ./.github/workflows/reusable-build.yml
     with:
-      configuration: CI
+      configuration: ${{ github.event_name == 'push' && 'CI' || inputs.configuration }}
       architecture: ${{ matrix.architecture }}
     secrets: inherit
