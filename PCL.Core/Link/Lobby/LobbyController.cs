@@ -104,16 +104,17 @@ public sealed class LobbyController
         {
             if (e.Message.Contains("lobby code"))
             {
-                LogWrapper.Error(e, "大厅编号无效");
+                LogWrapper.Warn(e, "大厅编号无效");
             }
             else if (e.Message.Contains("hostname"))
             {
-                LogWrapper.Error(e, "大厅创建者的用户名无效");
+                LogWrapper.Warn(e, "大厅创建者的用户名无效");
             }
             else
             {
-                LogWrapper.Error(e, "在加入大厅时出现意外的无效参数");
+                LogWrapper.Warn(e, "在加入大厅时出现意外的无效参数");
             }
+            throw;
         }
         catch (OperationCanceledException)
         {
@@ -237,7 +238,7 @@ public sealed class LobbyController
                     LogWrapper.Error("Link", "联机数据发送失败，未设置 TelemetryKey");
                     return false;
                 }
-                LogWrapper.Warn("Link", "联机数据发送失败，未设置 TelemetryKey，跳过发送");
+                LogWrapper.Info("Link", "联机数据发送失败，未设置 TelemetryKey，跳过发送");
             }
             else
             {
