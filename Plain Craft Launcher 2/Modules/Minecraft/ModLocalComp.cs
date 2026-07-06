@@ -364,6 +364,11 @@ public static class ModLocalComp
         public bool IsFolder => path.EndsWithF(@"\__FOLDER__", true);
 
         /// <summary>
+        ///     是否为文件夹形式的资源（如文件夹数据包）。
+        /// </summary>
+        public bool IsDirectoryComp => !IsFolder && Directory.Exists(path);
+
+        /// <summary>
         ///     获取实际的文件夹路径（去除 __FOLDER__ 标记）。
         /// </summary>
         public string ActualPath
@@ -1036,6 +1041,15 @@ public static class ModLocalComp
                 }
 
                 // 文件夹项不需要进一步处理
+                isLoaded = true;
+                return;
+            }
+
+            // 对于文件夹形式的资源（如文件夹数据包），检查 pack.mcmeta 是否存在
+            if (Directory.Exists(path))
+            {
+                if (!File.Exists(Path.Combine(path, "pack.mcmeta")))
+                    _FileUnavailableReason = new FileNotFoundException("文件夹中未找到 pack.mcmeta（" + path + "）");
                 isLoaded = true;
                 return;
             }
@@ -1946,6 +1960,19 @@ public static class ModLocalComp
                     {
                         ModBase.Log(ex, $"枚举文件夹失败：{loader.input.compPath}");
                     }
+
+                    // 数据包支持文件夹形式
+                    if (loader.input.compType == CompType.DataPack)
+                        try
+                        {
+                            foreach (var dir in Directory.EnumerateDirectories(loader.input.compPath))
+                                if (File.Exists(Path.Combine(dir, "pack.mcmeta")))
+                                    modList.Add(new LocalCompFile(dir));
+                        }
+                        catch (Exception ex)
+                        {
+                            ModBase.Log(ex, $"枚举数据包文件夹失败：{loader.input.compPath}");
+                        }
                 }
             }
 
@@ -1998,8 +2025,8 @@ public static class ModLocalComp
                     // 加载 McMod 对象
                     ModEntry.Load();
                 
-                // 读取 Comp 缓存
-                if (ModEntry.State == LocalCompFile.LocalFileStatus.Unavailable)
+                // 读取 Comp 缓存（文件夹形式的资源无法通过 Hash 匹配）
+                if (ModEntry.State == LocalCompFile.LocalFileStatus.Unavailable || ModEntry.IsDirectoryComp)
                     continue;
                 var cacheKey = ModEntry.ModrinthHash + loader.input.gameVersion.Info.VanillaName +
                                loader.input.loaders.Join("");
