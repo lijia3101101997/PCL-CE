@@ -1778,7 +1778,7 @@
     <sys:String x:Key="Link.Mod.Task.InitLobby">Initialize lobby</sys:String>
     <sys:String x:Key="Link.Mod.Task.InitLobbyUi">Initialize lobby UI</sys:String>
     <sys:String x:Key="Link.Mod.Task.RefreshUi">Refresh UI</sys:String>
-    <sys:String x:Key="Link.Mod.UsernameOrLogin">Please set a username in Settings first!</sys:String>
+    <sys:String x:Key="Link.Mod.UsernameOrLogin">Please set a username in the Multiplayer settings first!</sys:String>
 
     <!-- Link.Nat -->
 
@@ -2579,6 +2579,9 @@
     <sys:String x:Key="Setup.GameLink.Protocol.Tcp.ToolTip">Let EasyTier prefer TCP communication, which usually provides better stability.</sys:String>
     <sys:String x:Key="Setup.GameLink.Protocol.Udp">UDP</sys:String>
     <sys:String x:Key="Setup.GameLink.Protocol.Udp.ToolTip">Let EasyTier prefer UDP communication, which usually provides lower latency.</sys:String>
+    <sys:String x:Key="Setup.GameLink.RelayServer">Custom nodes</sys:String>
+    <sys:String x:Key="Setup.GameLink.RelayServer.Hint">Usually starts with tcp:// or udp://; separate multiple entries with semicolons</sys:String>
+    <sys:String x:Key="Setup.GameLink.RelayServer.ToolTip">Custom EasyTier relay node addresses, usually starting with tcp:// or udp://; separate multiple entries with semicolons.</sys:String>
     <sys:String x:Key="Setup.GameLink.RestartRequired">A lobby restart is required for changes on this page to take effect.</sys:String>
     <sys:String x:Key="Setup.GameLink.Username">Username</sys:String>
     <sys:String x:Key="Setup.GameLink.Username.ToolTip">PCL CE will use this username for lobby display.</sys:String>
@@ -2817,7 +2820,6 @@
     <sys:String x:Key="Setup.Left.Category.About">About</sys:String>
     <sys:String x:Key="Setup.Left.Category.Game">Game</sys:String>
     <sys:String x:Key="Setup.Left.Category.Launcher">Launcher</sys:String>
-    <sys:String x:Key="Setup.Left.Category.Tools">Tools</sys:String>
     <sys:String x:Key="Setup.Left.Feedback.Message">Please check the feedback list for similar issues before submitting new feedback to avoid duplicate submissions.</sys:String>
     <sys:String x:Key="Setup.Left.Feedback.SubmitNew">New feedback</sys:String>
     <sys:String x:Key="Setup.Left.Feedback.Title">Feedback</sys:String>
@@ -2835,7 +2837,6 @@
 
     <sys:String x:Key="Setup.Left.Item.About">About</sys:String>
     <sys:String x:Key="Setup.Left.Item.Feedback">Feedback</sys:String>
-    <sys:String x:Key="Setup.Left.Item.GameLink">Multiplayer</sys:String>
     <sys:String x:Key="Setup.Left.Item.GameManage">Management</sys:String>
     <sys:String x:Key="Setup.Left.Item.Java">Java</sys:String>
     <sys:String x:Key="Setup.Left.Item.Launch">Launch</sys:String>
@@ -3027,7 +3028,6 @@
     <sys:String x:Key="Setup.Ui.FeatureHide.Item.FeatureHide">Feature hiding</sys:String>
     <sys:String x:Key="Setup.Ui.FeatureHide.Item.FeatureHide.ToolTip">Only this tab will be hidden. Disabled content settings are still valid.&#xA;This can avoid feature hiding being changed while keeping the Personalization page.</sys:String>
     <sys:String x:Key="Setup.Ui.FeatureHide.Item.Feedback">Feedback</sys:String>
-    <sys:String x:Key="Setup.Ui.FeatureHide.Item.GameLink">Multiplayer</sys:String>
     <sys:String x:Key="Setup.Ui.FeatureHide.Item.GameManage">Management</sys:String>
     <sys:String x:Key="Setup.Ui.FeatureHide.Item.InstanceSelect">Selection</sys:String>
     <sys:String x:Key="Setup.Ui.FeatureHide.Item.InstanceSelect.ToolTip">Hide the selection and properties buttons below the Launch button.</sys:String>
@@ -3296,6 +3296,7 @@
     <sys:String x:Key="Tools.GameLink.Agreement.Body">By using the lobby feature, you agree to the following terms:&#xA;&#xA;I agree to comply with applicable laws and regulations and will not use the lobby feature for illegal or prohibited purposes.&#xA;I agree to bear all risks associated with using the lobby feature.</sys:String>
     <sys:String x:Key="Tools.GameLink.Agreement.Description">Usage notes for the PCL CE lobby are listed below.</sys:String>
     <sys:String x:Key="Tools.GameLink.Agreement.Title">PCL CE Lobby Terms &amp; Conditions</sys:String>
+    <sys:String x:Key="Tools.GameLink.Settings.Title">Multiplayer Settings</sys:String>
 
     <!-- Tools.GameLink.Finish -->
 

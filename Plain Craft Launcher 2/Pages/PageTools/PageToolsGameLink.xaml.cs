@@ -1,8 +1,10 @@
 ﻿using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using PCL.Core.App;
+using PCL.Core.App.Configuration;
 using PCL.Core.Link;
 using PCL.Core.Link.EasyTier;
 using PCL.Core.Link.Lobby;
@@ -29,7 +31,11 @@ public partial class PageToolsGameLink
     {
         InitializeComponent();
         LoaderInit();
-        Loaded += (_, _) => Reload();
+        Loaded += (_, _) =>
+        {
+            ReloadLinkSettings();
+            Reload();
+        };
         PageEnter += PageLinkLobby_OnPageEnter;
     }
 
@@ -105,6 +111,78 @@ public partial class PageToolsGameLink
 
         await LobbyService.InitializeAsync().ConfigureAwait(false);
     }
+
+    #region 联机设置
+
+    private void ReloadLinkSettings()
+    {
+        ModAnimation.AniControlEnabled += 1;
+        TextLinkUsername.Text = Config.Link.Username;
+        TextLinkRelayServer.Text = Config.Link.CustomRelayServer;
+        ComboPreferProtocol.SelectedIndex = (int)Config.Link.ProtocolPreference;
+        CheckLatencyFirstMode.Checked = Config.Link.UseLatencyFirstMode;
+        CheckTryPunchSym.Checked = Config.Link.TryPunchSym;
+        CheckEnableIPv6.Checked = Config.Link.EnableIPv6;
+        CheckEnableCliOutput.Checked = Config.Link.EnableCliOutput;
+        ModAnimation.AniControlEnabled -= 1;
+    }
+
+    private void LinkSettingTextBoxChange(object senderRaw, TextChangedEventArgs e)
+    {
+        var sender = (MyTextBox)senderRaw;
+        if (ModAnimation.AniControlEnabled == 0)
+            ConfigService.TrySetValue(sender.Tag?.ToString(), sender.Text);
+    }
+
+    private void LinkSettingCheckBoxChange(object senderRaw, bool user)
+    {
+        var sender = (MyCheckBox)senderRaw;
+        if (ModAnimation.AniControlEnabled == 0)
+            ConfigService.TrySetValue(sender.Tag?.ToString(), sender.Checked);
+    }
+
+    private void LinkProtocolPreferenceChange(object sender, SelectionChangedEventArgs e)
+    {
+        if (ModAnimation.AniControlEnabled == 0)
+            try
+            {
+                var selection = (LinkProtocolPreference)((MyComboBox)sender).SelectedIndex;
+                Config.Link.ProtocolPreference = selection;
+            }
+            catch (Exception ex)
+            {
+                ModBase.Log(
+                    ex,
+                    Lang.Text("Setup.GameLink.Error.ConfigChangeFailed"),
+                    ModBase.LogLevel.Hint,
+                    userSummary: Lang.Text("Setup.GameLink.Error.ConfigChangeFailed"));
+            }
+    }
+
+    private void BtnLinkSettingsReset_Click(object sender, EventArgs e)
+    {
+        if (ModMain.MyMsgBox(Lang.Text("Setup.Left.Reset.GameLink.Message"), Lang.Text("Setup.Left.Reset.Title"),
+                button2: Lang.Text("Common.Action.Cancel"), isWarn: true) != 1)
+            return;
+        try
+        {
+            Config.Link.Reset();
+            ModBase.Log("[Link] 已初始化联机设置");
+            HintService.Hint(Lang.Text("Setup.GameLink.Initialized"), HintType.Success, false);
+        }
+        catch (Exception ex)
+        {
+            ModBase.Log(
+                ex,
+                Lang.Text("Setup.GameLink.Error.InitFailed"),
+                ModBase.LogLevel.Msgbox,
+                userSummary: Lang.Text("Setup.GameLink.Error.InitFailed"));
+        }
+
+        ReloadLinkSettings();
+    }
+
+    #endregion
 
     private void BtnAgreeEula_Click(object sender, MouseButtonEventArgs e)
     {
