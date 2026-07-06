@@ -204,17 +204,25 @@ public class EasyTierEntity
                 .Add("l", "udp://0.0.0.0:0");
         }
 
-        foreach (var address in ETRelay.RelayList
-            .Select(static x => x.Url)
-            .Concat(_fallbackNodeLinks))
+        var customNodes = Config.Link.CustomRelayServer
+            .Split(';', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+            .Where(node =>
+            {
+                var isValid = node.StartsWith("tcp://", StringComparison.OrdinalIgnoreCase) ||
+                              node.StartsWith("udp://", StringComparison.OrdinalIgnoreCase) ||
+                              node.StartsWith("wss://", StringComparison.OrdinalIgnoreCase) ||
+                              node.StartsWith("ws://", StringComparison.OrdinalIgnoreCase);
+                if (!isValid) LogWrapper.Warn("EasyTier", $"Invalid custom node URL: {node}.");
+                return isValid;
+            });
+
+        foreach (var address in customNodes
+            .Concat(ETRelay.RelayList.Select(static x => x.Url))
+            .Concat(_fallbackNodeLinks)
+            .Distinct(StringComparer.OrdinalIgnoreCase))
         {
             args.Add("p", address);
         }
-        
-        // foreach (var address in await _GetEtRelayListAsync().ConfigureAwait(false))
-        // {
-        //     args.Add("p", address);
-        // }
 
         // if (Config.Link.RelayType == 1)
         // {
