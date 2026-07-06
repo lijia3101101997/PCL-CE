@@ -371,7 +371,8 @@ public partial class PageToolsGameLink
 
                 #region 多服务器轮询获取公告
 
-                while (serverNumber < Secrets.LinkServers.Length)
+                while (serverNumber < Secrets.LinkServers.Length &&
+                       !string.IsNullOrWhiteSpace(Secrets.LinkServers[serverNumber]))
                     try
                     {
                         // 获取缓存版本号
