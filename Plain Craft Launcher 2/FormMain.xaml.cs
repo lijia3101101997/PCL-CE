@@ -1897,7 +1897,17 @@ public partial class FormMain
                     {
                         if (ModMain.frmInstanceSavesLeft is null)
                             ModMain.frmInstanceSavesLeft = new PageInstanceSavesLeft();
+                        if (PageInstanceSavesLeft.currentSave != stack.additional.Value.SavePath)
+                        {
+                            // 进入其他存档时回到存档信息页
+                            ModMain.frmInstanceSavesLeft.pageID = PageSubType.VersionSavesInfo;
+                            ModMain.frmInstanceSavesLeft.ItemInfo.SetChecked(true, false, false);
+                        }
                         PageInstanceSavesLeft.currentSave = stack.additional.Value.SavePath;
+                        if (subType != PageSubType.Default)
+                            ModMain.frmInstanceSavesLeft.pageID = subType;
+                        else
+                            subType = ModMain.frmInstanceSavesLeft.pageID;
                         PageChangeAnim(ModMain.frmInstanceSavesLeft,
                             (FrameworkElement)ModMain.frmInstanceSavesLeft.PageGet(subType));
                         break;
