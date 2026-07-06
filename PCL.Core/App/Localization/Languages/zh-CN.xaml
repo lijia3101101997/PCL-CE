@@ -1778,7 +1778,7 @@
     <sys:String x:Key="Link.Mod.Task.InitLobby">大厅初始化</sys:String>
     <sys:String x:Key="Link.Mod.Task.InitLobbyUi">大厅界面初始化</sys:String>
     <sys:String x:Key="Link.Mod.Task.RefreshUi">刷新界面</sys:String>
-    <sys:String x:Key="Link.Mod.UsernameOrLogin">请先前往设置输入一个用户名再进行联机！</sys:String>
+    <sys:String x:Key="Link.Mod.UsernameOrLogin">请先在联机页面的联机设置中输入一个用户名再进行联机！</sys:String>
 
     <!-- Link.Nat -->
 
@@ -2817,7 +2817,6 @@
     <sys:String x:Key="Setup.Left.Category.About">关于</sys:String>
     <sys:String x:Key="Setup.Left.Category.Game">游戏</sys:String>
     <sys:String x:Key="Setup.Left.Category.Launcher">启动器</sys:String>
-    <sys:String x:Key="Setup.Left.Category.Tools">工具</sys:String>
     <sys:String x:Key="Setup.Left.Feedback.Message">在提交新反馈前，建议先搜索反馈列表，以避免重复提交。&#xA;如果无法打开该网页，请尝试使用加速器或 VPN。</sys:String>
     <sys:String x:Key="Setup.Left.Feedback.SubmitNew">提交新反馈</sys:String>
     <sys:String x:Key="Setup.Left.Feedback.Title">反馈</sys:String>
@@ -2835,7 +2834,6 @@
 
     <sys:String x:Key="Setup.Left.Item.About">软件信息</sys:String>
     <sys:String x:Key="Setup.Left.Item.Feedback">反馈</sys:String>
-    <sys:String x:Key="Setup.Left.Item.GameLink">联机</sys:String>
     <sys:String x:Key="Setup.Left.Item.GameManage">管理</sys:String>
     <sys:String x:Key="Setup.Left.Item.Java">Java</sys:String>
     <sys:String x:Key="Setup.Left.Item.Launch">启动</sys:String>
@@ -3027,7 +3025,6 @@
     <sys:String x:Key="Setup.Ui.FeatureHide.Item.FeatureHide">功能隐藏</sys:String>
     <sys:String x:Key="Setup.Ui.FeatureHide.Item.FeatureHide.ToolTip">仅隐藏本选项卡，设置的禁用内容依然有效。&#xA;可以在保留个性化设置页面的情况下避免隐藏设置被修改。</sys:String>
     <sys:String x:Key="Setup.Ui.FeatureHide.Item.Feedback">反馈</sys:String>
-    <sys:String x:Key="Setup.Ui.FeatureHide.Item.GameLink">联机</sys:String>
     <sys:String x:Key="Setup.Ui.FeatureHide.Item.GameManage">管理</sys:String>
     <sys:String x:Key="Setup.Ui.FeatureHide.Item.InstanceSelect">实例管理</sys:String>
     <sys:String x:Key="Setup.Ui.FeatureHide.Item.InstanceSelect.ToolTip">隐藏启动按钮下方的实例选择与实例设置入口。</sys:String>
@@ -3296,6 +3293,7 @@
     <sys:String x:Key="Tools.GameLink.Agreement.Body">使用大厅功能即代表你同意下列条款：&#xA;&#xA;我承诺严格遵守所在地相关法律法规，不会将大厅功能用于违法违规用途。&#xA;我承诺使用大厅功能带来的一切风险自行承担。</sys:String>
     <sys:String x:Key="Tools.GameLink.Agreement.Description">此处列出了 PCL CE 大厅的使用说明</sys:String>
     <sys:String x:Key="Tools.GameLink.Agreement.Title">PCL CE 联机大厅说明与条款</sys:String>
+    <sys:String x:Key="Tools.GameLink.Settings.Title">联机设置</sys:String>
 
     <!-- Tools.GameLink.Finish -->
 

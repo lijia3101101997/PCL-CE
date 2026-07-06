@@ -403,10 +403,7 @@
                         <local:MyCheckBox Height="22" VerticalAlignment="Center" Grid.Row="2" Grid.Column="4" Text="{DynamicResource Setup.Ui.FeatureHide.Item.GameManage}"
                                           x:Name="CheckHiddenSetupGameManage" Tag="UiHiddenSetupGameManage"
                                           Change="CheckBoxChange" />
-                        <local:MyCheckBox Height="22" VerticalAlignment="Center" Grid.Row="2" Grid.Column="5" Text="{DynamicResource Setup.Ui.FeatureHide.Item.GameLink}"
-                                          x:Name="CheckHiddenSetupGameLink" Tag="UiHiddenSetupGameLink"
-                                          Change="CheckBoxChange" />
-                        <local:MyCheckBox Height="22" VerticalAlignment="Center" Grid.Row="2" Grid.Column="6"
+                        <local:MyCheckBox Height="22" VerticalAlignment="Center" Grid.Row="2" Grid.Column="5"
                                           Text="{DynamicResource Setup.Ui.FeatureHide.Item.Ui}" x:Name="CheckHiddenSetupUI" Tag="UiHiddenSetupUi"
                                           Change="CheckBoxChange" />
                         <local:MyCheckBox Height="22" VerticalAlignment="Center" Grid.Row="3" Grid.Column="2" Text="{DynamicResource Setup.Ui.FeatureHide.Item.Language}"
